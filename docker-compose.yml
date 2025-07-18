@@ -8,7 +8,7 @@ services:
       - "8080:80"
     depends_on:
       - productos
-      # - inventario
+      - inventario
     networks:
       - app_net
 
@@ -28,7 +28,7 @@ services:
 
   inventario_db:
     image: postgres:15
-    container_name: inventario_db
+    container_name: inventariodb
     ports:
       - "5434:5432"
     environment:
@@ -47,14 +47,15 @@ services:
       - productos_db
     networks:
       - app_net
-  # inventario:
-  #   build: ./inventario
-  #   container_name: inventario_app
-  #   depends_on:
-  #     - inventario_db
-  #     - productos
-  #   networks:
-  #     - app_net
+
+  inventario:
+    build: ./ms-inventario
+    container_name: inventario_app
+    depends_on:
+      - inventario_db
+      - productos
+    networks:
+      - app_net
 
 volumes:
   productos_data:
