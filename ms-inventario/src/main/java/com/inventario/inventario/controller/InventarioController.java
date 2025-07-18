@@ -2,7 +2,10 @@ package com.inventario.inventario.controller;
 
 import com.inventario.inventario.model.Producto;
 import com.inventario.inventario.model.ActualizarCantidadRequestDTO;
+import com.inventario.inventario.model.Compra;
+import com.inventario.inventario.model.CompraRequestDTO;
 import com.inventario.inventario.response.ApiResponse;
+import com.inventario.inventario.service.CompraService;
 import com.inventario.inventario.service.InventarioService;
 
 import jakarta.validation.Valid;
@@ -18,9 +21,11 @@ import org.springframework.web.bind.annotation.*;
 public class InventarioController {
 
     private final InventarioService inventarioService;
+    private final CompraService compraService;
 
-    public InventarioController(InventarioService inventarioService) {
+    public InventarioController(CompraService compraService, InventarioService inventarioService) {
         this.inventarioService = inventarioService;
+        this.compraService = compraService;
     }
 
     @GetMapping("/producto/{id}")
@@ -52,5 +57,11 @@ public class InventarioController {
         producto.setCantidad(dto.cantidad());
         Producto actualizado = inventarioService.guardarInventario(producto);
         return ResponseEntity.ok(new ApiResponse<>("Cantidad actualizada correctamente", actualizado));
+    }
+
+    @PostMapping("/compra")
+    public ResponseEntity<ApiResponse<Compra>> registrarCompra(@RequestBody @Valid CompraRequestDTO dto) {
+        Compra compra = compraService.procesarCompra(dto);
+        return ResponseEntity.ok(new ApiResponse<>("Compra registrada correctamente", compra));
     }
 }

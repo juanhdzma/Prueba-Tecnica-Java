@@ -51,9 +51,18 @@ public class InventarioServiceImpl implements InventarioService {
         return guardado;
     }
 
+    public ProductoResponseDTO getProducto(Long id) {
+        ProductoResponseDTO producto = consultarProducto(id);
+        if (producto == null) {
+            log.warn("🚫 Producto con ID {} no encontrado en el MS de productos", id);
+            return null;
+        }
+        return producto;
+    }
+
     @SuppressWarnings("null")
     private ProductoResponseDTO consultarProducto(Long id) {
-        String url = "http://localhost:8080/producto/" + id;
+        String url = "http://productos:8080/producto/" + id;
 
         // Autenticación básica codificada
         String username = "admin";

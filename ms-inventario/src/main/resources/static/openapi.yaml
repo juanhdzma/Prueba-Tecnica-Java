@@ -1,0 +1,578 @@
+openapi: 3.0.0
+info:
+  title: Prueba Tecnica Java
+  version: 1.0.0
+servers:
+  - url: http://{{url_inventario}}
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+tags:
+  - name: MS Inventario
+paths:
+  /actuator/health:
+    get:
+      tags:
+        - MS Inventario
+      summary: Health
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/vnd.spring-boot.actuator.v3+json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Fri, 18 Jul 2025 12:57:29 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: UP
+                groups:
+                  - liveness
+                  - readiness
+                components:
+                  db:
+                    status: UP
+                    details:
+                      database: PostgreSQL
+                      validationQuery: isValid()
+                  diskSpace:
+                    status: UP
+                    details:
+                      total: 245107195904
+                      free: 133704867840
+                      threshold: 10485760
+                      path: >-
+                        /Users/juanhdzma/Documents/Work/Repos/Prueba-Tecnica-Java/.
+                      exists: true
+                  livenessState:
+                    status: UP
+                  ping:
+                    status: UP
+                  readinessState:
+                    status: UP
+                  ssl:
+                    status: UP
+                    details:
+                      validChains: []
+                      invalidChains: []
+        '503':
+          description: Service Unavailable
+          headers:
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/vnd.spring-boot.actuator.v3+json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Fri, 18 Jul 2025 12:59:18 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: DOWN
+                groups:
+                  - liveness
+                  - readiness
+                components:
+                  db:
+                    status: DOWN
+                    details:
+                      error: >-
+                        org.springframework.jdbc.CannotGetJdbcConnectionException:
+                        Failed to obtain JDBC Connection
+                  diskSpace:
+                    status: UP
+                    details:
+                      total: 245107195904
+                      free: 133701677056
+                      threshold: 10485760
+                      path: >-
+                        /Users/juanhdzma/Documents/Work/Repos/Prueba-Tecnica-Java/.
+                      exists: true
+                  livenessState:
+                    status: UP
+                  ping:
+                    status: UP
+                  readinessState:
+                    status: UP
+                  ssl:
+                    status: UP
+                    details:
+                      validChains: []
+                      invalidChains: []
+  /producto/100:
+    get:
+      tags:
+        - MS Inventario
+      summary: Producto
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Fri, 18 Jul 2025 17:53:01 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                mensaje: Producto en inventario encontrado o creado
+                data:
+                  id: 1
+                  cantidad: 0
+        '400':
+          description: Bad Request
+          headers:
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Fri, 18 Jul 2025 17:56:43 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                mensaje: Proceso no completado
+                data:
+                  Producto: Producto no existe en el sistema
+  /producto/actualizar_cantidad:
+    patch:
+      tags:
+        - MS Inventario
+      summary: Actualizar Cantidad
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 1
+                cantidad: -1
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Fri, 18 Jul 2025 18:14:31 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                mensaje: Cantidad actualizada correctamente
+                data:
+                  id: 1
+                  cantidad: 2
+        '400':
+          description: Bad Request
+          headers:
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Fri, 18 Jul 2025 18:14:59 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Body Incompleto
+                  value:
+                    mensaje: Error de formato en los campos
+                    data:
+                      cantidad: must not be null
+                example-1:
+                  summary: Formato Invalido
+                  value:
+                    mensaje: Error de formato en los campos
+                    data:
+                      cantidad: La cantidad no puede ser negativa
+  /compra:
+    post:
+      tags:
+        - MS Inventario
+      summary: Compra
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 1
+                cantidad: 2
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Fri, 18 Jul 2025 18:52:31 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                mensaje: Compra registrada correctamente
+                data:
+                  idArticulo: 1
+                  nombreArticulo: Laptop Gamer
+                  precioUnidad: 123
+                  cantidad: 2
+                  valorTotal: 246
+                  fechaHora: '2025-07-18T13:52:31.107483'
+        '400':
+          description: Bad Request
+          headers:
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Fri, 18 Jul 2025 18:51:15 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Body Incompleto
+                  value:
+                    mensaje: Error de formato en los campos
+                    data:
+                      id: El ID del producto es obligatorio
+                example-1:
+                  summary: Cantidad Invalida
+                  value:
+                    mensaje: Error de formato en los campos
+                    data:
+                      cantidad: La cantidad debe ser al menos 1
+                example-2:
+                  summary: Insuficiente
+                  value:
+                    mensaje: Error de negocio
+                    data:
+                      error: 'Cantidad insuficiente en inventario. Disponible: 2'
+                example-3:
+                  summary: No Existe
+                  value:
+                    mensaje: Error de negocio
+                    data:
+                      error: Producto no encontrado en el sistema externo
