@@ -23,7 +23,7 @@ El sistema se basa en una arquitectura de microservicios desacoplados, orquestad
 
 📦 **Contenedores Docker**: Cada servicio corre de forma aislada. La arquitectura actual permite transición fluida a entornos como Kubernetes, mejorando la orquestación, balanceo, reinicios automáticos y métricas. Las bases de datos cuentan con volúmenes mapeados para garantizar persistencia ante reinicios.
 
-![Diagrama de Arquitectura](./Docs/Arquitectura.svg)
+![Diagrama de Arquitectura](./Docs/Diagrama-Arquitectura.svg)
 
 ---
 
@@ -150,7 +150,45 @@ Se aplicó manejo de timeout y reintentos al consumir el MS de Productos desde I
 
 ---
 
-## ❌ Estructura clara de errores
+## 🪵 Estructura de Logs y Seguimiento de Transacciones
+
+Se implementó un sistema de logs estructurado y uniforme que permite rastrear con claridad tanto transacciones exitosas como errores en tiempo de ejecución.
+
+### 🧠 Características clave:
+
+- Cada log incluye: **nivel de severidad**, **timestamp**, **servicio origen**, **módulo**, **mensaje claro** y en caso de error, los **detalles del body recibido**.
+- Logs diferenciados para:
+  - Creación exitosa de producto (respuesta serializada)
+  - Validaciones fallidas (campos obligatorios no enviados)
+  - Errores de deserialización por tipo de datos incorrecto
+- Se usa un `@ControllerAdvice` global para capturar y loguear errores de forma centralizada.
+
+### 🕵️‍♂️ Ejemplo real de ejecución
+
+A continuación se muestra un ejemplo real de logs en acción, donde se reflejan:
+
+- 3 productos creados correctamente.
+- 1 error de validación por falta de campo obligatorio (`nombre`).
+- 1 error de deserialización al enviar `precio` como `String`.
+
+![Evidencia de logs estructurados](./Docs/Logs.png)
+
+### 📋 Ventajas
+
+- Permite **debug rápido** al mostrar el body exacto enviado y la razón de fallo.
+- Las transacciones exitosas también son logueadas con su resultado, útil para trazabilidad.
+- Los logs están listos para ser integrados a herramientas como ELK, Grafana o Prometheus.
+- Las marcas de tiempo hacen posible reconstruir secuencias de acciones en ambientes reales.
+
+```text
+[INFO] 2025-07-18T11:16:51Z [productos-service] [ProductoController] - Producto creado exitosamente: ProductoResponseDTO{id=3, nombre=Laptop Gamer, precio=123.0}
+[WARN] 2025-07-18T11:17:53Z [productos-service] [GlobalExceptionHandler] - Error de validación: {nombre=El nombre es obligatorio}
+[ERROR] 2025-07-18T11:17:01Z [productos-service] [GlobalExceptionHandler] - Error de deserialización: Cannot deserialize value of type Double from "asd"
+```
+
+---
+
+## ⚠️ Estructura clara de errores
 
 Todas las respuestas, incluso las de error, siguen esta estructura:
 
