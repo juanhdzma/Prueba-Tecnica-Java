@@ -1,0 +1,1753 @@
+{
+	"info": {
+		"_postman_id": "bc622b24-a4ac-484a-aa0e-bf479bf58f4d",
+		"name": "Prueba Tecnica Java",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42538588"
+	},
+	"item": [
+		{
+			"name": "MS Producto",
+			"item": [
+				{
+					"name": "Producto",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Laptop Gamer\",\n  \"precio\": 123,\n  \"descripcion\": \"Laptop de alto rendimiento con tarjeta gráfica dedicada\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_PRODUCTO}}/producto",
+							"host": [
+								"{{URL_PRODUCTO}}"
+							],
+							"path": [
+								"producto"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Exitoso",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nombre\": \"Laptop Gamer\",\n  \"precio\": 123,\n  \"descripcion\": \"Laptop de alto rendimiento con tarjeta gráfica dedicada\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_PRODUCTO}}/producto",
+									"host": [
+										"{{URL_PRODUCTO}}"
+									],
+									"path": [
+										"producto"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 12:41:26 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"mensaje\": \"Producto creado exitosamente\",\n    \"data\": {\n        \"id\": 13,\n        \"nombre\": \"Laptop Gamer\",\n        \"precio\": 123,\n        \"descripcion\": \"Laptop de alto rendimiento con tarjeta gráfica dedicada\"\n    }\n}"
+						},
+						{
+							"name": "Body Incompleto",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"precio\": 123,\n  \"descripcion\": \"Laptop de alto rendimiento con tarjeta gráfica dedicada\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_PRODUCTO}}/producto",
+									"host": [
+										"{{URL_PRODUCTO}}"
+									],
+									"path": [
+										"producto"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 12:55:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"mensaje\": \"Error de formato en los campos\",\n    \"data\": {\n        \"nombre\": \"El nombre es obligatorio\"\n    }\n}"
+						},
+						{
+							"name": "Formato Incorrecto",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nombre\": \"Laptop Gamer\",\n  \"precio\": \"asd\",\n  \"descripcion\": \"Laptop de alto rendimiento con tarjeta gráfica dedicada\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_PRODUCTO}}/producto",
+									"host": [
+										"{{URL_PRODUCTO}}"
+									],
+									"path": [
+										"producto"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 12:56:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"mensaje\": \"Error de formato en los campos\",\n    \"data\": {\n        \"precio\": \"Formato inválido\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Health",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL_PRODUCTO}}/actuator/health",
+							"host": [
+								"{{URL_PRODUCTO}}"
+							],
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Exitoso",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_PRODUCTO}}/actuator/health",
+									"host": [
+										"{{URL_PRODUCTO}}"
+									],
+									"path": [
+										"actuator",
+										"health"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/vnd.spring-boot.actuator.v3+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 12:57:29 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"UP\",\n    \"groups\": [\n        \"liveness\",\n        \"readiness\"\n    ],\n    \"components\": {\n        \"db\": {\n            \"status\": \"UP\",\n            \"details\": {\n                \"database\": \"PostgreSQL\",\n                \"validationQuery\": \"isValid()\"\n            }\n        },\n        \"diskSpace\": {\n            \"status\": \"UP\",\n            \"details\": {\n                \"total\": 245107195904,\n                \"free\": 133704867840,\n                \"threshold\": 10485760,\n                \"path\": \"/Users/juanhdzma/Documents/Work/Repos/Prueba-Tecnica-Java/.\",\n                \"exists\": true\n            }\n        },\n        \"livenessState\": {\n            \"status\": \"UP\"\n        },\n        \"ping\": {\n            \"status\": \"UP\"\n        },\n        \"readinessState\": {\n            \"status\": \"UP\"\n        },\n        \"ssl\": {\n            \"status\": \"UP\",\n            \"details\": {\n                \"validChains\": [],\n                \"invalidChains\": []\n            }\n        }\n    }\n}"
+						},
+						{
+							"name": "No DB",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_PRODUCTO}}/actuator/health",
+									"host": [
+										"{{URL_PRODUCTO}}"
+									],
+									"path": [
+										"actuator",
+										"health"
+									]
+								}
+							},
+							"status": "Service Unavailable",
+							"code": 503,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/vnd.spring-boot.actuator.v3+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 12:59:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"DOWN\",\n    \"groups\": [\n        \"liveness\",\n        \"readiness\"\n    ],\n    \"components\": {\n        \"db\": {\n            \"status\": \"DOWN\",\n            \"details\": {\n                \"error\": \"org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection\"\n            }\n        },\n        \"diskSpace\": {\n            \"status\": \"UP\",\n            \"details\": {\n                \"total\": 245107195904,\n                \"free\": 133701677056,\n                \"threshold\": 10485760,\n                \"path\": \"/Users/juanhdzma/Documents/Work/Repos/Prueba-Tecnica-Java/.\",\n                \"exists\": true\n            }\n        },\n        \"livenessState\": {\n            \"status\": \"UP\"\n        },\n        \"ping\": {\n            \"status\": \"UP\"\n        },\n        \"readinessState\": {\n            \"status\": \"UP\"\n        },\n        \"ssl\": {\n            \"status\": \"UP\",\n            \"details\": {\n                \"validChains\": [],\n                \"invalidChains\": []\n            }\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Producto Encontrado",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL_PRODUCTO}}/producto/1",
+							"host": [
+								"{{URL_PRODUCTO}}"
+							],
+							"path": [
+								"producto",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Encontrado",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_PRODUCTO}}/producto/1",
+									"host": [
+										"{{URL_PRODUCTO}}"
+									],
+									"path": [
+										"producto",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 12:47:43 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"mensaje\": \"Producto obtenido correctamente\",\n    \"data\": {\n        \"id\": 1,\n        \"nombre\": \"Laptop Gamer\",\n        \"precio\": 5999000,\n        \"descripcion\": \"Laptop de alto rendimiento con tarjeta gráfica dedicada\"\n    }\n}"
+						},
+						{
+							"name": "No Encontrado",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_PRODUCTO}}/producto/100",
+									"host": [
+										"{{URL_PRODUCTO}}"
+									],
+									"path": [
+										"producto",
+										"100"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 12:58:21 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"mensaje\": \"Error en la consulta\",\n    \"data\": {\n        \"error\": \"Producto no encontrado con ID 100\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Productos",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL_PRODUCTO}}/productos",
+							"host": [
+								"{{URL_PRODUCTO}}"
+							],
+							"path": [
+								"productos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Exitoso",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_PRODUCTO}}/productos",
+									"host": [
+										"{{URL_PRODUCTO}}"
+									],
+									"path": [
+										"productos"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 12:37:36 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"mensaje\": \"Listado de productos obtenido correctamente\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"nombre\": \"Laptop Gamer\",\n            \"precio\": 5999000,\n            \"descripcion\": \"Laptop de alto rendimiento con tarjeta gráfica dedicada\"\n        },\n        {\n            \"id\": 2,\n            \"nombre\": \"Laptop Gamer\",\n            \"precio\": 5999000,\n            \"descripcion\": \"Laptop de alto rendimiento con tarjeta gráfica dedicada\"\n        },\n        {\n            \"id\": 3,\n            \"nombre\": \"Laptop Gamer\",\n            \"precio\": 5999000,\n            \"descripcion\": \"Laptop de alto rendimiento con tarjeta gráfica dedicada\"\n        },\n        {\n            \"id\": 4,\n            \"nombre\": \"123\",\n            \"precio\": 123,\n            \"descripcion\": \"Laptop de alto rendimiento con tarjeta gráfica dedicada\"\n        },\n        {\n            \"id\": 5,\n            \"nombre\": \"Laptop Gamer\",\n            \"precio\": 123,\n            \"descripcion\": \"Laptop de alto rendimiento con tarjeta gráfica dedicada\"\n        },\n        {\n            \"id\": 6,\n            \"nombre\": \"123\",\n            \"precio\": 123,\n            \"descripcion\": \"Laptop de alto rendimiento con tarjeta gráfica dedicada\"\n        },\n        {\n            \"id\": 7,\n            \"nombre\": \"Laptop Gamer\",\n            \"precio\": 123,\n            \"descripcion\": \"Laptop de alto rendimiento con tarjeta gráfica dedicada\"\n        },\n        {\n            \"id\": 8,\n            \"nombre\": \"Laptop Gamer\",\n            \"precio\": 123,\n            \"descripcion\": \"Laptop de alto rendimiento con tarjeta gráfica dedicada\"\n        },\n        {\n            \"id\": 9,\n            \"nombre\": \"Laptop Gamer\",\n            \"precio\": 123,\n            \"descripcion\": \"Laptop de alto rendimiento con tarjeta gráfica dedicada\"\n        },\n        {\n            \"id\": 10,\n            \"nombre\": \"Laptop Gamer\",\n            \"precio\": 123,\n            \"descripcion\": \"Laptop de alto rendimiento con tarjeta gráfica dedicada\"\n        },\n        {\n            \"id\": 11,\n            \"nombre\": \"Laptop Gamer\",\n            \"precio\": 123,\n            \"descripcion\": \"Laptop de alto rendimiento con tarjeta gráfica dedicada\"\n        },\n        {\n            \"id\": 12,\n            \"nombre\": \"Laptop Gamer\",\n            \"precio\": 123,\n            \"descripcion\": \"Laptop de alto rendimiento con tarjeta gráfica dedicada\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "MS Inventario",
+			"item": [
+				{
+					"name": "Health",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL_INVENTARIO}}/actuator/health",
+							"host": [
+								"{{URL_INVENTARIO}}"
+							],
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Exitoso",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_INVENTARIO}}/actuator/health",
+									"host": [
+										"{{URL_INVENTARIO}}"
+									],
+									"path": [
+										"actuator",
+										"health"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/vnd.spring-boot.actuator.v3+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 12:57:29 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"UP\",\n    \"groups\": [\n        \"liveness\",\n        \"readiness\"\n    ],\n    \"components\": {\n        \"db\": {\n            \"status\": \"UP\",\n            \"details\": {\n                \"database\": \"PostgreSQL\",\n                \"validationQuery\": \"isValid()\"\n            }\n        },\n        \"diskSpace\": {\n            \"status\": \"UP\",\n            \"details\": {\n                \"total\": 245107195904,\n                \"free\": 133704867840,\n                \"threshold\": 10485760,\n                \"path\": \"/Users/juanhdzma/Documents/Work/Repos/Prueba-Tecnica-Java/.\",\n                \"exists\": true\n            }\n        },\n        \"livenessState\": {\n            \"status\": \"UP\"\n        },\n        \"ping\": {\n            \"status\": \"UP\"\n        },\n        \"readinessState\": {\n            \"status\": \"UP\"\n        },\n        \"ssl\": {\n            \"status\": \"UP\",\n            \"details\": {\n                \"validChains\": [],\n                \"invalidChains\": []\n            }\n        }\n    }\n}"
+						},
+						{
+							"name": "No DB",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_INVENTARIO}}/actuator/health",
+									"host": [
+										"{{URL_INVENTARIO}}"
+									],
+									"path": [
+										"actuator",
+										"health"
+									]
+								}
+							},
+							"status": "Service Unavailable",
+							"code": 503,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/vnd.spring-boot.actuator.v3+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 12:59:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"DOWN\",\n    \"groups\": [\n        \"liveness\",\n        \"readiness\"\n    ],\n    \"components\": {\n        \"db\": {\n            \"status\": \"DOWN\",\n            \"details\": {\n                \"error\": \"org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection\"\n            }\n        },\n        \"diskSpace\": {\n            \"status\": \"UP\",\n            \"details\": {\n                \"total\": 245107195904,\n                \"free\": 133701677056,\n                \"threshold\": 10485760,\n                \"path\": \"/Users/juanhdzma/Documents/Work/Repos/Prueba-Tecnica-Java/.\",\n                \"exists\": true\n            }\n        },\n        \"livenessState\": {\n            \"status\": \"UP\"\n        },\n        \"ping\": {\n            \"status\": \"UP\"\n        },\n        \"readinessState\": {\n            \"status\": \"UP\"\n        },\n        \"ssl\": {\n            \"status\": \"UP\",\n            \"details\": {\n                \"validChains\": [],\n                \"invalidChains\": []\n            }\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Producto",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL_INVENTARIO}}/producto/100",
+							"host": [
+								"{{URL_INVENTARIO}}"
+							],
+							"path": [
+								"producto",
+								"100"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Exitoso",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_INVENTARIO}}/producto/1",
+									"host": [
+										"{{URL_INVENTARIO}}"
+									],
+									"path": [
+										"producto",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 17:53:01 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"mensaje\": \"Producto en inventario encontrado o creado\",\n    \"data\": {\n        \"id\": 1,\n        \"cantidad\": 0\n    }\n}"
+						},
+						{
+							"name": "No Existe",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_INVENTARIO}}/producto/100",
+									"host": [
+										"{{URL_INVENTARIO}}"
+									],
+									"path": [
+										"producto",
+										"100"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 17:56:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"mensaje\": \"Proceso no completado\",\n    \"data\": {\n        \"Producto\": \"Producto no existe en el sistema\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Actualizar Cantidad",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"cantidad\": -1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_INVENTARIO}}/producto/actualizar_cantidad",
+							"host": [
+								"{{URL_INVENTARIO}}"
+							],
+							"path": [
+								"producto",
+								"actualizar_cantidad"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Actualizado",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1,\n    \"cantidad\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_INVENTARIO}}/producto/actualizar_cantidad",
+									"host": [
+										"{{URL_INVENTARIO}}"
+									],
+									"path": [
+										"producto",
+										"actualizar_cantidad"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 18:14:31 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"mensaje\": \"Cantidad actualizada correctamente\",\n    \"data\": {\n        \"id\": 1,\n        \"cantidad\": 2\n    }\n}"
+						},
+						{
+							"name": "Body Incompleto",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_INVENTARIO}}/producto/actualizar_cantidad",
+									"host": [
+										"{{URL_INVENTARIO}}"
+									],
+									"path": [
+										"producto",
+										"actualizar_cantidad"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 18:14:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"mensaje\": \"Error de formato en los campos\",\n    \"data\": {\n        \"cantidad\": \"must not be null\"\n    }\n}"
+						},
+						{
+							"name": "Formato Invalido",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1,\n    \"cantidad\": -1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_INVENTARIO}}/producto/actualizar_cantidad",
+									"host": [
+										"{{URL_INVENTARIO}}"
+									],
+									"path": [
+										"producto",
+										"actualizar_cantidad"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 18:50:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"mensaje\": \"Error de formato en los campos\",\n    \"data\": {\n        \"cantidad\": \"La cantidad no puede ser negativa\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Compra",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"cantidad\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_INVENTARIO}}/compra",
+							"host": [
+								"{{URL_INVENTARIO}}"
+							],
+							"path": [
+								"compra"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Body Incompleto",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    // \"id\": 1,\n    \"cantidad\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_INVENTARIO}}/compra",
+									"host": [
+										"{{URL_INVENTARIO}}"
+									],
+									"path": [
+										"compra"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 18:51:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"mensaje\": \"Error de formato en los campos\",\n    \"data\": {\n        \"id\": \"El ID del producto es obligatorio\"\n    }\n}"
+						},
+						{
+							"name": "Cantidad Invalida",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1,\n    \"cantidad\": 0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_INVENTARIO}}/compra",
+									"host": [
+										"{{URL_INVENTARIO}}"
+									],
+									"path": [
+										"compra"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 18:51:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"mensaje\": \"Error de formato en los campos\",\n    \"data\": {\n        \"cantidad\": \"La cantidad debe ser al menos 1\"\n    }\n}"
+						},
+						{
+							"name": "Insuficiente",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1,\n    \"cantidad\": 100\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_INVENTARIO}}/compra",
+									"host": [
+										"{{URL_INVENTARIO}}"
+									],
+									"path": [
+										"compra"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 18:51:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"mensaje\": \"Error de negocio\",\n    \"data\": {\n        \"error\": \"Cantidad insuficiente en inventario. Disponible: 2\"\n    }\n}"
+						},
+						{
+							"name": "No Existe",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 100,\n    \"cantidad\": 100\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_INVENTARIO}}/compra",
+									"host": [
+										"{{URL_INVENTARIO}}"
+									],
+									"path": [
+										"compra"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 18:52:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"mensaje\": \"Error de negocio\",\n    \"data\": {\n        \"error\": \"Producto no encontrado en el sistema externo\"\n    }\n}"
+						},
+						{
+							"name": "Exitoso",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1,\n    \"cantidad\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_INVENTARIO}}/compra",
+									"host": [
+										"{{URL_INVENTARIO}}"
+									],
+									"path": [
+										"compra"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 18:52:31 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"mensaje\": \"Compra registrada correctamente\",\n    \"data\": {\n        \"idArticulo\": 1,\n        \"nombreArticulo\": \"Laptop Gamer\",\n        \"precioUnidad\": 123,\n        \"cantidad\": 2,\n        \"valorTotal\": 246,\n        \"fechaHora\": \"2025-07-18T13:52:31.107483\"\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "http://localhost:8080",
+			"type": "default"
+		}
+	]
+}
