@@ -12,11 +12,17 @@ public class SecurityConfig {
         public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
                 return http
                                 .authorizeHttpRequests(auth -> auth
+                                                .requestMatchers(
+                                                                "/swagger-ui.html",
+                                                                "/swagger-ui/**",
+                                                                "/v3/api-docs/**",
+                                                                "/openapi.yaml",
+                                                                "/actuator/**")
+                                                .permitAll()
                                                 .anyRequest().authenticated())
                                 .httpBasic(httpBasic -> {
                                 })
-                                .csrf(csrf -> csrf
-                                                .ignoringRequestMatchers("/producto", "/producto/**"))
+                                .csrf(csrf -> csrf.ignoringRequestMatchers("/**"))
                                 .build();
         }
 }
