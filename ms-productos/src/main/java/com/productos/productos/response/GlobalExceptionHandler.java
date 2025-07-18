@@ -59,6 +59,22 @@ public class GlobalExceptionHandler {
                 .body(new ApiResponse<>("Error de formato en los campos", errores));
     }
 
+    @ExceptionHandler(ProductoNoEncontradoException.class)
+    public ResponseEntity<ApiResponse<Map<String, String>>> handleProductoNoEncontrado(
+            ProductoNoEncontradoException ex,
+            HttpServletRequest request) {
+
+        Map<String, String> errorData = new HashMap<>();
+        errorData.put("error", ex.getMessage());
+
+        String requestBody = extractRequestBody(request);
+        log.warn("❌ Producto no encontrado: {}\n📦 Datos recibidos: {}", ex.getMessage(), requestBody);
+
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(new ApiResponse<>("Error en la consulta", errorData));
+    }
+
     private String extractRequestBody(HttpServletRequest request) {
         if (request instanceof CachedBodyHttpServletRequest cached) {
             return cached.getCachedBodyAsString();
