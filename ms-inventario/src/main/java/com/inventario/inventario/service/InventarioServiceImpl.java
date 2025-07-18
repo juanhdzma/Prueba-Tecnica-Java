@@ -29,6 +29,11 @@ public class InventarioServiceImpl implements InventarioService {
     }
 
     @Override
+    public Producto guardarInventario(Producto producto) {
+        return inventarioRepository.save(producto);
+    }
+
+    @Override
     public Producto verificarYCrearDesdeProducto(Long id) {
         ProductoResponseDTO producto = consultarProducto(id);
         if (producto == null) {

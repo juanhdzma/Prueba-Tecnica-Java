@@ -1,8 +1,11 @@
 package com.inventario.inventario.controller;
 
 import com.inventario.inventario.model.Producto;
+import com.inventario.inventario.model.ActualizarCantidadRequestDTO;
 import com.inventario.inventario.response.ApiResponse;
 import com.inventario.inventario.service.InventarioService;
+
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
@@ -30,5 +33,24 @@ public class InventarioController {
         }
 
         return ResponseEntity.ok(new ApiResponse<>("Producto en inventario encontrado o creado", resultado));
+    }
+
+    @PatchMapping("/producto/actualizar_cantidad")
+    public ResponseEntity<ApiResponse<?>> actualizarCantidad(
+            @RequestBody @Valid ActualizarCantidadRequestDTO dto) {
+        Producto producto = inventarioService.buscarInventario(dto.id());
+
+        if (producto == null) {
+            producto = inventarioService.verificarYCrearDesdeProducto(dto.id());
+            if (producto == null) {
+                Map<String, String> errorData = Map.of("Producto", "Producto no existe en el sistema");
+                return ResponseEntity.badRequest()
+                        .body(new ApiResponse<>("Producto no existe en el sistema", errorData));
+            }
+        }
+
+        producto.setCantidad(dto.cantidad());
+        Producto actualizado = inventarioService.guardarInventario(producto);
+        return ResponseEntity.ok(new ApiResponse<>("Cantidad actualizada correctamente", actualizado));
     }
 }

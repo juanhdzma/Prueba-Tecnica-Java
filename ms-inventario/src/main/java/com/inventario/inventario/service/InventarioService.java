@@ -6,4 +6,6 @@ public interface InventarioService {
     Producto verificarYCrearDesdeProducto(Long id);
 
     Producto buscarInventario(Long id);
+
+    Producto guardarInventario(Producto producto);
 }
