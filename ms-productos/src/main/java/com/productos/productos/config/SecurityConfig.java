@@ -8,15 +8,15 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http
-                .authorizeHttpRequests(auth -> auth
-                        .anyRequest().authenticated())
-                .httpBasic(httpBasic -> {
-                })
-                .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/productos"))
-                .build();
-    }
+        @Bean
+        public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+                return http
+                                .authorizeHttpRequests(auth -> auth
+                                                .anyRequest().authenticated())
+                                .httpBasic(httpBasic -> {
+                                })
+                                .csrf(csrf -> csrf
+                                                .ignoringRequestMatchers("/producto", "/producto/**"))
+                                .build();
+        }
 }

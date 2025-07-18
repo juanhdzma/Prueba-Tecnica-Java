@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   gateway:
     image: nginx:latest
@@ -10,17 +8,19 @@ services:
       - "8080:80"
     depends_on:
       - productos
-      - inventario
+      # - inventario
     networks:
       - app_net
 
   productos_db:
     image: postgres:15
-    container_name: productos_db
+    container_name: productosdb
+    ports:
+      - "5433:5432"
     environment:
-      POSTGRES_USER: productos_user
-      POSTGRES_PASSWORD: productos_pass
-      POSTGRES_DB: productos_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: productosdb
     volumes:
       - productos_data:/var/lib/postgresql/data
     networks:
@@ -29,31 +29,32 @@ services:
   inventario_db:
     image: postgres:15
     container_name: inventario_db
+    ports:
+      - "5434:5432"
     environment:
-      POSTGRES_USER: inventario_user
-      POSTGRES_PASSWORD: inventario_pass
-      POSTGRES_DB: inventario_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: inventariodb
     volumes:
       - inventario_data:/var/lib/postgresql/data
     networks:
       - app_net
 
   productos:
-    build: ./productos
+    build: ./ms-productos
     container_name: productos_app
     depends_on:
       - productos_db
     networks:
       - app_net
-
-  inventario:
-    build: ./inventario
-    container_name: inventario_app
-    depends_on:
-      - inventario_db
-      - productos
-    networks:
-      - app_net
+  # inventario:
+  #   build: ./inventario
+  #   container_name: inventario_app
+  #   depends_on:
+  #     - inventario_db
+  #     - productos
+  #   networks:
+  #     - app_net
 
 volumes:
   productos_data:

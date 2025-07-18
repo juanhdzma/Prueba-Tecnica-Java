@@ -9,8 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/productos")
 @Slf4j
 public class ProductoController {
 
@@ -20,7 +21,7 @@ public class ProductoController {
         this.productoService = productoService;
     }
 
-    @PostMapping
+    @PostMapping("/producto")
     public ResponseEntity<ApiResponse<ProductoResponseDTO>> crearProducto(
             @RequestBody @Valid ProductoRequestDTO request) {
         ProductoResponseDTO producto = productoService.crearProducto(request);
@@ -28,5 +29,19 @@ public class ProductoController {
         return ResponseEntity.ok(new ApiResponse<>(
                 "Producto creado exitosamente",
                 producto));
+    }
+
+    @GetMapping("/producto/{id}")
+    public ResponseEntity<ApiResponse<ProductoResponseDTO>> obtenerProductoPorId(@PathVariable Long id) {
+        ProductoResponseDTO producto = productoService.obtenerProductoPorId(id);
+        log.info("📦 Producto encontrado: {}", producto);
+        return ResponseEntity.ok(new ApiResponse<>("Producto obtenido correctamente", producto));
+    }
+
+    @GetMapping("/productos")
+    public ResponseEntity<ApiResponse<List<ProductoResponseDTO>>> obtenerTodosLosProductos() {
+        List<ProductoResponseDTO> productos = productoService.obtenerTodosLosProductos();
+        log.info("📦 Productos obtenidos: {} encontrados", productos.size());
+        return ResponseEntity.ok(new ApiResponse<>("Listado de productos obtenido correctamente", productos));
     }
 }

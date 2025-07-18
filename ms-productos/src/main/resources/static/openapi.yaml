@@ -1,0 +1,554 @@
+openapi: 3.0.0
+info:
+  title: Prueba Tecnica Java
+  version: 1.0.0
+servers:
+  - url: http://{{baseurl}}
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+tags:
+  - name: MS Producto
+paths:
+  /producto:
+    post:
+      tags:
+        - MS Producto
+      summary: Producto
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                nombre: Laptop Gamer
+                precio: 123
+                descripcion: Laptop de alto rendimiento con tarjeta gráfica dedicada
+      security:
+        - basicAuth: []
+      parameters:
+        - name: ''
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Fri, 18 Jul 2025 12:41:26 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                mensaje: Producto creado exitosamente
+                data:
+                  id: 13
+                  nombre: Laptop Gamer
+                  precio: 123
+                  descripcion: Laptop de alto rendimiento con tarjeta gráfica dedicada
+        '400':
+          description: Bad Request
+          headers:
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Fri, 18 Jul 2025 12:55:50 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Body Incompleto
+                  value:
+                    mensaje: Error de formato en los campos
+                    data:
+                      nombre: El nombre es obligatorio
+                example-1:
+                  summary: Formato Incorrecto
+                  value:
+                    mensaje: Error de formato en los campos
+                    data:
+                      precio: Formato inválido
+  /actuator/health:
+    get:
+      tags:
+        - MS Producto
+      summary: Health
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/vnd.spring-boot.actuator.v3+json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Fri, 18 Jul 2025 12:57:29 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: UP
+                groups:
+                  - liveness
+                  - readiness
+                components:
+                  db:
+                    status: UP
+                    details:
+                      database: PostgreSQL
+                      validationQuery: isValid()
+                  diskSpace:
+                    status: UP
+                    details:
+                      total: 245107195904
+                      free: 133704867840
+                      threshold: 10485760
+                      path: >-
+                        /Users/juanhdzma/Documents/Work/Repos/Prueba-Tecnica-Java/.
+                      exists: true
+                  livenessState:
+                    status: UP
+                  ping:
+                    status: UP
+                  readinessState:
+                    status: UP
+                  ssl:
+                    status: UP
+                    details:
+                      validChains: []
+                      invalidChains: []
+        '503':
+          description: Service Unavailable
+          headers:
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/vnd.spring-boot.actuator.v3+json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Fri, 18 Jul 2025 12:59:18 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: DOWN
+                groups:
+                  - liveness
+                  - readiness
+                components:
+                  db:
+                    status: DOWN
+                    details:
+                      error: >-
+                        org.springframework.jdbc.CannotGetJdbcConnectionException:
+                        Failed to obtain JDBC Connection
+                  diskSpace:
+                    status: UP
+                    details:
+                      total: 245107195904
+                      free: 133701677056
+                      threshold: 10485760
+                      path: >-
+                        /Users/juanhdzma/Documents/Work/Repos/Prueba-Tecnica-Java/.
+                      exists: true
+                  livenessState:
+                    status: UP
+                  ping:
+                    status: UP
+                  readinessState:
+                    status: UP
+                  ssl:
+                    status: UP
+                    details:
+                      validChains: []
+                      invalidChains: []
+  /producto/{id}:
+    get:
+      tags:
+        - MS Producto
+      summary: Producto Encontrado
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Fri, 18 Jul 2025 12:47:43 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                mensaje: Producto obtenido correctamente
+                data:
+                  id: 1
+                  nombre: Laptop Gamer
+                  precio: 5999000
+                  descripcion: Laptop de alto rendimiento con tarjeta gráfica dedicada
+        '404':
+          description: Not Found
+          headers:
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Fri, 18 Jul 2025 12:58:21 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                mensaje: Error en la consulta
+                data:
+                  error: Producto no encontrado con ID 100
+  /productos:
+    get:
+      tags:
+        - MS Producto
+      summary: Productos
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: '0'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: '0'
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Fri, 18 Jul 2025 12:37:36 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                mensaje: Listado de productos obtenido correctamente
+                data:
+                  - id: 1
+                    nombre: Laptop Gamer
+                    precio: 5999000
+                    descripcion: Laptop de alto rendimiento con tarjeta gráfica dedicada
+                  - id: 2
+                    nombre: Laptop Gamer
+                    precio: 5999000
+                    descripcion: Laptop de alto rendimiento con tarjeta gráfica dedicada
+                  - id: 3
+                    nombre: Laptop Gamer
+                    precio: 5999000
+                    descripcion: Laptop de alto rendimiento con tarjeta gráfica dedicada
+                  - id: 4
+                    nombre: '123'
+                    precio: 123
+                    descripcion: Laptop de alto rendimiento con tarjeta gráfica dedicada
+                  - id: 5
+                    nombre: Laptop Gamer
+                    precio: 123
+                    descripcion: Laptop de alto rendimiento con tarjeta gráfica dedicada
+                  - id: 6
+                    nombre: '123'
+                    precio: 123
+                    descripcion: Laptop de alto rendimiento con tarjeta gráfica dedicada
+                  - id: 7
+                    nombre: Laptop Gamer
+                    precio: 123
+                    descripcion: Laptop de alto rendimiento con tarjeta gráfica dedicada
+                  - id: 8
+                    nombre: Laptop Gamer
+                    precio: 123
+                    descripcion: Laptop de alto rendimiento con tarjeta gráfica dedicada
+                  - id: 9
+                    nombre: Laptop Gamer
+                    precio: 123
+                    descripcion: Laptop de alto rendimiento con tarjeta gráfica dedicada
+                  - id: 10
+                    nombre: Laptop Gamer
+                    precio: 123
+                    descripcion: Laptop de alto rendimiento con tarjeta gráfica dedicada
+                  - id: 11
+                    nombre: Laptop Gamer
+                    precio: 123
+                    descripcion: Laptop de alto rendimiento con tarjeta gráfica dedicada
+                  - id: 12
+                    nombre: Laptop Gamer
+                    precio: 123
+                    descripcion: Laptop de alto rendimiento con tarjeta gráfica dedicada

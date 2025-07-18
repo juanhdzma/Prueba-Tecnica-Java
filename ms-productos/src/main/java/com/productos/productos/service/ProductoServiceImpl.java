@@ -4,10 +4,13 @@ import com.productos.productos.model.ProductoRequestDTO;
 import com.productos.productos.model.ProductoResponseDTO;
 import com.productos.productos.model.Producto;
 import com.productos.productos.repository.ProductoRepository;
-// import com.productos.productos.service.ProductoService;
+import com.productos.productos.response.ProductoNoEncontradoException;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductoServiceImpl implements ProductoService {
@@ -30,14 +33,34 @@ public class ProductoServiceImpl implements ProductoService {
 
             Producto guardado = productoRepository.save(producto);
 
-            return new ProductoResponseDTO(
-                    guardado.getId(),
-                    guardado.getNombre(),
-                    guardado.getPrecio(),
-                    guardado.getDescripcion());
+            return mapToDTO(guardado);
 
         } catch (Exception e) {
             throw new RuntimeException("Error al guardar el producto: " + e.getMessage(), e);
         }
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public ProductoResponseDTO obtenerProductoPorId(Long id) {
+        Producto producto = productoRepository.findById(id)
+                .orElseThrow(() -> new ProductoNoEncontradoException("Producto no encontrado con ID " + id));
+        return mapToDTO(producto);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<ProductoResponseDTO> obtenerTodosLosProductos() {
+        return productoRepository.findAll().stream()
+                .map(this::mapToDTO)
+                .collect(Collectors.toList());
+    }
+
+    private ProductoResponseDTO mapToDTO(Producto producto) {
+        return new ProductoResponseDTO(
+                producto.getId(),
+                producto.getNombre(),
+                producto.getPrecio(),
+                producto.getDescripcion());
     }
 }
